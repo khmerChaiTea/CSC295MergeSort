@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace SortingAlgorithms
+namespace CSC295MergeSort
 {
     public class Program
     {
@@ -33,6 +33,37 @@ namespace SortingAlgorithms
             //stopwatch.Stop();
             //Console.WriteLine($"Elapsed time for Selection Sort: {stopwatch.ElapsedTicks}");
 
+            //Console.WriteLine("Please select a sorting algorithm");
+            //Console.WriteLine("1: Bubble Sort");
+            //Console.WriteLine("2: Selection Sort");
+            //Console.WriteLine("3: Insertion Sort");
+
+            //string? userSelection = Console.ReadLine();
+
+            //Student student1 = new Student("Melissa", 4.0);
+            //Student student2 = new Student("Rich", 3.0);
+            //Student student3 = new Student("Adam", 3.8);
+
+            //Student[] students = { student1, student2, student3 };
+
+            //switch (userSelection)
+            //{
+            //    case "1":
+            //        BubbleSort(students);
+            //        break;
+            //    case "2":
+            //        // call selection sort method
+            //        break;
+            //    case "3":
+            //        // call insertion sort method
+            //        break;
+            //    default:
+            //        // none of the cases matched
+            //        break;
+            //}
+
+            //PrintArray(students);
+
             int[] mergeArray = { 3, 2, 5, 6, 7, 4, 1, 0 };
             MergeSort(mergeArray);
         }
@@ -42,6 +73,15 @@ namespace SortingAlgorithms
             foreach (int element in arr)
             {
                 Console.Write($"{element} ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void PrintArray(Student[] arr)
+        {
+            foreach (var item in arr)
+            {
+                Console.Write($"{item.name}: {item.gpa} ");
             }
             Console.WriteLine();
         }
@@ -126,6 +166,24 @@ namespace SortingAlgorithms
             return totalOuterIterations;
         }
 
+        public static void BubbleSort(Student[] arr)
+        {
+            Student temp;
+            for (int i = 0; i < arr.Length - 1; i++) // how many times we need to go though the unsorted array  
+            {
+                for (int j = 0; j < arr.Length - 1 - i; j++)
+                {
+                    // we need to swap  
+                    if (arr[j].gpa < arr[j + 1].gpa)
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
         public static void SelectionSort(int[] arr)
         {
             // minIndex keeps track of the smallest index in each iteration
@@ -135,7 +193,7 @@ namespace SortingAlgorithms
             // O(n) how many times we need to go though the unsorted array
             for (int i = 0; i < arr.Length; i++)
             {
-                minIndex = i; // set the minIdex equal to current smallest index
+                minIndex = i; // set the minIndex equal to current smallest index
                 for (int j = i; j < arr.Length; j++) // loop through each element starting at i
                 {
                     // if the element is smaller than the current minIndex

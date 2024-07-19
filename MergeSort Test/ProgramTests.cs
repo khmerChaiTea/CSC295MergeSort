@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SortingAlgorithms;
+using CSC295MergeSort;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SortingAlgorithms.Tests
+namespace CSC295MergeSort.Tests
 {
     [TestClass()]
     public class ProgramTests
