@@ -37,6 +37,7 @@ namespace CSC295MergeSort
             //Console.WriteLine("1: Bubble Sort");
             //Console.WriteLine("2: Selection Sort");
             //Console.WriteLine("3: Insertion Sort");
+            //Console.WriteLine("4: Merge Sort");
 
             //string? userSelection = Console.ReadLine();
 
@@ -66,6 +67,7 @@ namespace CSC295MergeSort
 
             int[] mergeArray = { 3, 2, 5, 6, 7, 4, 1, 0 };
             MergeSort(mergeArray);
+            Console.WriteLine();
         }
 
         public static void PrintArray(int[] arr)
@@ -108,6 +110,38 @@ namespace CSC295MergeSort
 
             MergeSort(leftSubArray);
             MergeSort(rightSubArray);
+            Merge(arr, leftSubArray, rightSubArray);
+        }
+
+        public static void Merge(int[] arr, int[] leftArr, int[] rightArr)
+        {
+            int arrIndex = 0, leftIndex = 0, rightIndex = 0;
+
+            // While the leftArr has values and the right array has values
+            // we will evaluate which value is lesser - and make assignments
+            while (leftIndex < leftArr.Length && rightIndex < rightArr.Length)
+            {
+                if (leftArr[leftIndex] <= rightArr[rightIndex])
+                {
+                    arr[arrIndex++] = leftArr[leftIndex++];
+                }
+                else
+                {
+                    arr[arrIndex++] = rightArr[rightIndex++];
+                }
+            }
+
+            // Copy remaining elements from left array, if any
+            while(leftIndex < leftArr.Length)
+            {
+                arr[arrIndex++] = leftArr[leftIndex++];
+            }
+
+            // Copy remaining elements from right array, if any
+            while (rightIndex < rightArr.Length)
+            {
+                arr[arrIndex++] = rightArr[rightIndex++];
+            }
         }
 
         public static void InsertionSort(int[] arr)
