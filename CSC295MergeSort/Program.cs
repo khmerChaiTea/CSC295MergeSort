@@ -66,8 +66,17 @@ namespace CSC295MergeSort
             //PrintArray(students);
 
             int[] mergeArray = { 3, 2, 5, 6, 7, 4, 1, 0 };
-            MergeSort(mergeArray);
+            //MergeSort(mergeArray);
+            //Console.WriteLine();
+            QuickSort(mergeArray);
             Console.WriteLine();
+        }
+
+        public static void QuickSort(int[] arr)
+        {
+            if (arr == null) return;
+            if (arr.Length == 0) return;
+            QuickSortHelper(arr, 0, arr.Length - 1);
         }
 
         public static void PrintArray(int[] arr)
@@ -86,6 +95,51 @@ namespace CSC295MergeSort
                 Console.Write($"{item.name}: {item.gpa} ");
             }
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Utilizes a quick sort algotihm to sort the passed in array
+        /// </summary>
+        /// <param name="arr"> the array which should be sorted </param>
+        /// <param name="low"> the smaller index of the (sub)array</param>
+        /// <param name="high"> the larger index of the (sub)array</param>
+        public static void QuickSortHelper(int[] arr, int low, int high)
+        {
+            if (low < high)
+            {
+                // Partition return pivot location to us
+                int pivotIndex = Partition(arr, low, high);
+
+                // Call QuickSort again on the new subarrays passed on pivots position
+                QuickSortHelper(arr, low, pivotIndex - 1);
+                QuickSortHelper(arr, pivotIndex + 1, high);
+            }
+        }
+
+        public static int Partition(int[] arr, int low, int high) 
+        {
+            int pivot = arr[high];  // setting pivot as last value
+            int i = low - 1;
+
+            for (int j = low; j < high; j++)
+            {
+                if (arr[j] < pivot) 
+                {
+                    i++;
+                    Swap(arr, i, j);
+                }
+            }
+
+            Swap(arr, ++i, high);
+            return i;
+        }
+
+        public static void Swap(int[] arr, int i, int j) 
+        {
+            // Swap - could also move this into a helper method
+            int temp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = temp;
         }
 
         // Responsible for splitting the array up and then merged them together
